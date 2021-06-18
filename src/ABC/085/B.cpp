@@ -5,14 +5,15 @@ int main() {
     int n;
     cin >> n;
 
-    int ans = 0;
-    vector<int> vec(n);
+    vector<int> d(n);
     for (int i = 0; i < n; i++) {
-        int d;
-        cin >> d;
+        cin >> d.at(i);
+    }
+    sort(d.begin(), d.end());
 
-        if (find(vec.begin(), vec.end(), d) == vec.end()) {
-            vec.push_back(d);
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || d.at(i) != d.at(i - 1)) {
             ans++;
         }
     }
