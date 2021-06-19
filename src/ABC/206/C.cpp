@@ -2,21 +2,19 @@
 using namespace std;
 
 int main() {
-    int n;
+    long long n;
     cin >> n;
 
-    int ans = 0;
-    map<int, int> m;
-    for (int i = 0; i < n; i++) {
-        int a;
+    map<long long, long long> m;
+    for (long long i = 0; i < n; i++) {
+        long long a;
         cin >> a;
         m[a]++;
+    }
 
-        for (auto x : m) {
-            if (a != x.first) {
-                ans += x.second;
-            }
-        }
+    long long ans = n * (n - 1) / 2;
+    for (pair<long long, long long> p : m) {
+        ans -= p.second * (p.second - 1) / 2;
     }
 
     cout << ans << endl;
