@@ -4,17 +4,17 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    vector<int> a(n);
+    map<int, int> m;
     for (int i = 0; i < n; i++) {
-        cin >> a.at(i);
+        int a;
+        cin >> a;
+        m[a % 200]++;
     }
 
-    int count = 0;
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if ((a.at(i) - a.at(j)) % 200 == 0) {
-                count++;
-            }
+    long long count = 0;
+    for (auto p : m) {
+        if (p.second > 1) {
+            count += (long long)(p.second - 1 + 1) * (p.second - 1) / 2;
         }
     }
     cout << count << endl;
