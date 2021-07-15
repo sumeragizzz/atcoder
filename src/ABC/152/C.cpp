@@ -5,20 +5,15 @@ int main() {
     int n;
     cin >> n;
     vector<int> p(n);
+    vector<int> min(n);
     for (int i = 0; i < n; i++) {
         cin >> p.at(i);
+        min.at(i) = std::min(p.at(i), (i == 0) ? INT_MAX : min.at(i - 1));
     }
 
     int ans = 0;
     for (int i = 0; i < n; i++) {
-        bool ok = true;
-        for (int j = 0; j <= i; j++) {
-            if (p.at(i) > p.at(j)) {
-                ok = false;
-                break;
-            }
-        }
-        if (ok) ans++;
+        if (p.at(i) <= min.at(i)) ans++;
     }
     cout << ans << endl;
 }
