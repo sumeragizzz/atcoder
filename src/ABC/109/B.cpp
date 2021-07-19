@@ -10,14 +10,13 @@ int main() {
     }
 
     set<string> s;
-    string before;
-    for (int i = 0; i < n; i++) {
-        if (i > 0 && (s.count(w.at(i)) > 0 || before.back() != w.at(i).front())) {
+    s.insert(w.at(0));
+    for (int i = 1; i < n; i++) {
+        if (s.count(w.at(i)) > 0 || w.at(i - 1).back() != w.at(i).front()) {
             cout << "No" << endl;
             return 0;
         }
         s.insert(w.at(i));
-        before = w.at(i);
     }
     cout << "Yes" << endl;
 }
